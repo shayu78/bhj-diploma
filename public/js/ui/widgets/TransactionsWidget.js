@@ -10,8 +10,10 @@ class TransactionsWidget {
    * Если переданный элемент не существует,
    * необходимо выкинуть ошибку.
    * */
-  constructor( element ) {
-
+  constructor(element) {
+    if (!element) throw new Error("Нет элемента виджета");
+    this.element = element;
+    this.registerEvents();
   }
   /**
    * Регистрирует обработчики нажатия на
@@ -20,6 +22,7 @@ class TransactionsWidget {
    * экземпляра окна
    * */
   registerEvents() {
-
+    document.querySelector('.create-income-button').addEventListener('click', (event) => App.getModal('newIncome').open());
+    document.querySelector('.create-expense-button').addEventListener('click', (event) => App.getModal('newExpense').open());
   }
 }
